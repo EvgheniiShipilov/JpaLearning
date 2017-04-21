@@ -51,4 +51,14 @@ public class User {
     public void setPrivateInfo(EmbeddedInfo privateInfo) {
         this.privateInfo = privateInfo;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", lastLogin=" + lastLogin +
+                ", name='" + name + '\'' +
+                ", privateInfo=" + privateInfo +
+                '}';
+    }
 }
