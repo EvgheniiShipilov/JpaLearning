@@ -7,12 +7,15 @@ import java.time.Instant;
  * Created by esipilov on 3/31/2017.
  */
 @Entity
-@Table
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     private Instant lastLogin;
 
@@ -50,6 +53,14 @@ public class User {
 
     public void setPrivateInfo(EmbeddedInfo privateInfo) {
         this.privateInfo = privateInfo;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override

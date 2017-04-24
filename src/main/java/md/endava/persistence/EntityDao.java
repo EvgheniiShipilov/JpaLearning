@@ -9,21 +9,8 @@ import javax.persistence.Persistence;
  */
 public class EntityDao {
 
-    private EntityManagerFactory emf;
-
-    protected EntityManagerFactory getEntityManagerFactory (){
-        if (emf == null){
-            emf = Persistence.createEntityManagerFactory("test");
-        }
-        return emf;
-    }
-
-    protected EntityManager getEntityManager(){
-        return getEntityManagerFactory().createEntityManager();
-    }
-
     public void persist(Object entity){
-        EntityManager em = getEntityManager();
+        EntityManager em = PersistenceUtils.getEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(entity);
@@ -31,10 +18,6 @@ public class EntityDao {
         } finally {
             em.close();
         }
-    }
-
-    public void closeEntityManagerFactory(){
-        emf.close();
     }
 
 }

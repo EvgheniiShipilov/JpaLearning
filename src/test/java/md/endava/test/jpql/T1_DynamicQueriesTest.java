@@ -44,11 +44,6 @@ public class T1_DynamicQueriesTest {
         em = null;
     }
 
-    @AfterAll
-    public static void tearDown(){
-        dao.closeEntityManagerFactory();
-    }
-
     @Test
     public void testJpql_whenSelect_thenReturnValue(){
         TypedQuery<User> query = em.createQuery("from User u where u.name = :name", User.class);
