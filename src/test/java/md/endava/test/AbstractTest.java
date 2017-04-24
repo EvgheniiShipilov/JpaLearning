@@ -24,13 +24,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Created by esipilov on 4/4/2017.
  */
-public class T1_SimpleSelectTest {
+public class AbstractTest {
 
-    private static EntityDao dao;
-    private static UserService userService = new UserService();
-    private static DepartmentService departmentService = new DepartmentService();
+    protected static EntityDao dao;
+    protected static UserService userService = new UserService();
+    protected static DepartmentService departmentService = new DepartmentService();
 
-    private EntityManager em;
+    protected EntityManager em;
 
     @BeforeAll
     public static void setUp() {
@@ -39,22 +39,16 @@ public class T1_SimpleSelectTest {
         userService.createUser("User 1.2", department);
     }
 
-
-    @Test
-    public void testCriteria_whenSelect_thenReturnValue() {
-        CriteriaBuilder criteriaBuilder = PersistenceUtils.getEntityManagerFactory().createEntityManager().getCriteriaBuilder();
-        CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        CriteriaQuery<User> criteriaQuery = query.select(root);
-
-        List<User> resultList = getResultList(criteriaQuery);
-        assertTrue(resultList.size() == 2);
-    }
-
-    private <T> List<T> getResultList(CriteriaQuery<T> criteriaQuery) {
-        TypedQuery<T> typedQuery = em.createQuery(criteriaQuery);
-        return typedQuery.getResultList();
-    }
+//    @Test
+//    public void testCriteria_whenSelect_thenReturnValue() {
+//        CriteriaBuilder criteriaBuilder = PersistenceUtils.getEntityManagerFactory().createEntityManager().getCriteriaBuilder();
+//        CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
+//        Root<User> root = query.from(User.class);
+//        CriteriaQuery<User> criteriaQuery = query.select(root);
+//
+//        List<User> resultList = getResultList(criteriaQuery);
+//        assertTrue(resultList.size() == 2);
+//    }
 
     @BeforeEach
     public void setUpEach() {
@@ -67,5 +61,10 @@ public class T1_SimpleSelectTest {
             em.close();
             em = null;
         }
+    }
+
+    protected <T> List<T> getResultList(CriteriaQuery<T> criteriaQuery) {
+        TypedQuery<T> typedQuery = em.createQuery(criteriaQuery);
+        return typedQuery.getResultList();
     }
 }

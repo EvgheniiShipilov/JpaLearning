@@ -15,7 +15,7 @@ public class Department {
 
     private String name;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department")
     private List<User> users;
 
     @Override

@@ -7,6 +7,7 @@ import java.time.Instant;
  * Created by esipilov on 3/31/2017.
  */
 @Entity
+@NamedQuery(name="findUserByName", query = "from User u where u.name = :name")
 public class User {
 
     @Id
