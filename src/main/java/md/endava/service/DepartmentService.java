@@ -1,4 +1,4 @@
-package md.endava;
+package md.endava.service;
 
 import md.endava.domain.Department;
 import md.endava.domain.User;

@@ -2,6 +2,7 @@ package md.endava.domain;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 
 /**
  * Created by esipilov on 3/31/2017.
@@ -23,6 +24,8 @@ public class User {
     private String name;
 
     private EmbeddedInfo privateInfo;
+
+    private Date accountCreationDate;
 
     public Instant getLastLogin() {
         return lastLogin;
@@ -64,6 +67,13 @@ public class User {
         this.department = department;
     }
 
+    public Date getAccountCreationDate() {
+        return accountCreationDate;
+    }
+
+    public void setAccountCreationDate(Date accountCreationDate) {
+        this.accountCreationDate = accountCreationDate;
+    }
     @Override
     public String toString() {
         return "User{" +
