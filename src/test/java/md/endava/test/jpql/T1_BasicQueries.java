@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.time.Instant;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -44,7 +43,7 @@ public class T1_BasicQueries extends AbstractTest {
     @Test
     public void testAggregateResults() {
         Query query = em.createQuery("select count(u.id), max(u.lastLogin) from User u");
-        Object[] result = (Object[])query.getSingleResult();
+        Object[] result = (Object[]) query.getSingleResult();
         System.out.println(result[0] + " different users, last activity: " + result[1]);
         assertEquals(result[0], new Long(2));
     }

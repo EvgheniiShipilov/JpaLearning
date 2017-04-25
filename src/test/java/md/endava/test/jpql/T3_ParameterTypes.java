@@ -9,14 +9,9 @@ import javax.persistence.TypedQuery;
 import java.sql.Date;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by esipilov on 4/4/2017.

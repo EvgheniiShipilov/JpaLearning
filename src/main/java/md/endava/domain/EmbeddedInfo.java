@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by esipilov on 4/5/2017.
  */
 @Embeddable
-public class EmbeddedInfo implements Serializable{
+public class EmbeddedInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,7 +42,7 @@ public class EmbeddedInfo implements Serializable{
     }
 
     @Embeddable
-    public static class InnerInfo implements Serializable{
+    public static class InnerInfo implements Serializable {
 
         private static long serialVersionUID = 2L;
 

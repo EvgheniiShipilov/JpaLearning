@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by esipilov on 3/31/2017.
  */
 @Entity
-@NamedQuery(name="findUserByName", query = "from User u where u.name = :name")
+@NamedQuery(name = "findUserByName", query = "from User u where u.name = :name")
 public class User {
 
     @Id
@@ -74,6 +74,7 @@ public class User {
     public void setAccountCreationDate(Date accountCreationDate) {
         this.accountCreationDate = accountCreationDate;
     }
+
     @Override
     public String toString() {
         return "User{" +

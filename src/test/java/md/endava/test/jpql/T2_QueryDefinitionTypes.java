@@ -5,11 +5,11 @@ import md.endava.persistence.PersistenceUtils;
 import md.endava.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.*;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Created by esipilov on 4/4/2017.

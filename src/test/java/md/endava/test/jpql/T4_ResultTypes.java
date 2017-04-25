@@ -6,11 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
-import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
-import java.sql.Date;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -75,7 +71,7 @@ public class T4_ResultTypes extends AbstractTest {
     public void testSelect_ReturnUntypedSingleResult() {
         Query query = em.createQuery("from User u where u.name = :name");
         query.setParameter("name", "User 1.1");
-        User result = (User)query.getSingleResult();
+        User result = (User) query.getSingleResult();
         assertNotNull(result);
     }
 
@@ -83,7 +79,7 @@ public class T4_ResultTypes extends AbstractTest {
     * Write a query to return one user
     * Get the results as a List
     *
-    *
+    * A List with a single result will be returned
     * */
     @Test
     public void testSelect_ReturnResultList_SuccessWithOneResult() {
@@ -93,12 +89,16 @@ public class T4_ResultTypes extends AbstractTest {
         assertFalse(result.isEmpty());
     }
 
+    /*
+    * Write a query to return a list of users
+    * Get the result as a single result
+    *
+    * A NonUniqueResultException exception will be thrown
+    * */
     @Test
     public void testSelect_ReturnSingleResult_FailedWithMultipleResults() {
         TypedQuery<User> query = em.createQuery("from User u where u.department.name = :name", User.class);
         query.setParameter("name", "department 1");
         assertThrows(NonUniqueResultException.class, () -> query.getSingleResult());
     }
-
-
 }

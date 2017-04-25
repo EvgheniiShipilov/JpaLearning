@@ -1,10 +1,10 @@
 package md.endava.test;
 
-import md.endava.service.DepartmentService;
-import md.endava.service.UserService;
 import md.endava.domain.Department;
 import md.endava.persistence.EntityDao;
 import md.endava.persistence.PersistenceUtils;
+import md.endava.service.DepartmentService;
+import md.endava.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +13,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by esipilov on 4/4/2017.
@@ -31,8 +29,8 @@ public class AbstractTest {
 
     @BeforeAll
     public static void setUp() {
-        synchronized (isInitialized){
-            if(!isInitialized){
+        synchronized (isInitialized) {
+            if (!isInitialized) {
                 Department department = departmentService.createDepartment("department 1");
                 userService.createUser("User 1.1", department);
                 userService.createUser("User 1.2", department);

@@ -13,10 +13,10 @@ public class PersistenceUtils {
 
     private static volatile EntityManagerFactory emf;
 
-    public static EntityManagerFactory getEntityManagerFactory(){
-        if(emf == null){
-            synchronized (PersistenceUtils.class){
-                if(emf == null){
+    public static EntityManagerFactory getEntityManagerFactory() {
+        if (emf == null) {
+            synchronized (PersistenceUtils.class) {
+                if (emf == null) {
                     emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
                 }
             }
@@ -24,13 +24,13 @@ public class PersistenceUtils {
         return emf;
     }
 
-    public static EntityManager getEntityManager(){
+    public static EntityManager getEntityManager() {
         return getEntityManagerFactory().createEntityManager();
     }
 
     @Override
     protected void finalize() throws Throwable {
-        if(emf != null && emf.isOpen()){
+        if (emf != null && emf.isOpen()) {
             System.out.print("Closing entity manager factory!");
             emf.close();
         }
