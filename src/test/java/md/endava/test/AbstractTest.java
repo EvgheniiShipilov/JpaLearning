@@ -34,6 +34,7 @@ public class AbstractTest {
                 Department department = departmentService.createDepartment("department 1");
                 userService.createUser("User 1.1", department);
                 userService.createUser("User 1.2", department);
+                userService.createUser("User 1.3", department);
                 isInitialized = true;
             }
         }
