@@ -18,6 +18,10 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class T3_ParameterTypes extends AbstractTest {
 
+    /*
+    * JPQL Query parameters can be specified in numerical form.
+    * The query string would contain '?1' as a reference to that parameter.
+    * */
     @Test
     public void testIndexParameters() {
         TypedQuery<User> query = em.createQuery("from User u where u.name = ?1 and u.department.name = ?2", User.class);
@@ -28,7 +32,10 @@ public class T3_ParameterTypes extends AbstractTest {
     }
 
     /*
-    * Will not find any participants as this is the same date
+    * Method setParameter for java.util.Date arguments may take an additional TemporalType argument.
+    * It does specify the corresponding sql type for the query.
+    *
+    * This example will not find any participants as this is the same date and time is not taken into account.
     * */
     @Test
     public void testDateParams_TemporalDate() {
@@ -43,7 +50,8 @@ public class T3_ParameterTypes extends AbstractTest {
     }
 
     /*
-    * Will find participants created within the last hour
+    * This example will find participants created within the last hour
+    * as both date and time are taken into account.
     * */
     @Test
     public void testDateParams_TemporalDateTime() {

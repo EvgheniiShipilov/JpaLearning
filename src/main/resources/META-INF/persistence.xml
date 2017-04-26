@@ -4,6 +4,9 @@
     <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
         <class>md.endava.domain.User</class>
         <class>md.endava.domain.Department</class>
+        <class>md.endava.domain.Project</class>
+        <class>md.endava.domain.JavaProject</class>
+        <class>md.endava.domain.ScalaProject</class>
         <properties>
             <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test"/>-->

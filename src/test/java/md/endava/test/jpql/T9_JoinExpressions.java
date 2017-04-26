@@ -9,13 +9,9 @@ import org.junit.jupiter.api.Test;
 public class T9_JoinExpressions extends AbstractTest {
 
     @Test
-    public void testSelectBySuperType() {
+    public void testJoin() {
         // TODO
     }
 
-    @Test
-    public void testSelectBySubType() {
-        // TODO
-    }
 
 }

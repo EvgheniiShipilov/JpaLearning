@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by esipilov on 26/4/2017.
@@ -27,6 +26,18 @@ public class T6_PathSelectExpressions extends AbstractTest {
         query.setParameter("name", "department 1");
         List<User> result = query.getResultList();
         assertFalse(result.isEmpty());
+    }
+
+    /*
+    * Embedded field navigation example.
+    * User has an embedded privateInfo field which has an embedded privateInfo field which has a previousName field.
+    * */
+    @Test
+    public void testLongPathExpressions2() {
+        TypedQuery<User> query = em.createQuery("FROM User u WHERE u.privateInfo.innerInfo.previousName = :name", User.class);
+        query.setParameter("name", "department 1");
+        List<User> result = query.getResultList();
+        assertTrue(result.isEmpty());
     }
 
     /*
@@ -61,8 +72,10 @@ public class T6_PathSelectExpressions extends AbstractTest {
     * */
     @Test
     public void testListPathExpressions_FailsIfNotLast() {
-        TypedQuery<Department> query = em.createQuery("FROM Department d WHERE d.users.name IS NOT NULL", Department.class);
-        assertThrows(IllegalArgumentException.class, () -> query.getResultList());
+        assertThrows(IllegalArgumentException.class, () -> {
+            TypedQuery<Department> query = em.createQuery("FROM Department d WHERE d.users.name IS NOT NULL", Department.class);
+            query.getResultList();
+        });
     }
 
 }

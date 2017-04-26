@@ -13,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -27,6 +27,14 @@ public class User {
 
     private Date accountCreationDate;
 
+    public User() {
+    }
+
+    public User(String name, Instant lastLogin) {
+        this.lastLogin = lastLogin;
+        this.name = name;
+    }
+
     public Instant getLastLogin() {
         return lastLogin;
     }
@@ -35,11 +43,11 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

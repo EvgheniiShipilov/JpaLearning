@@ -17,6 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class T1_BasicQueries extends AbstractTest {
 
     /*
+    * JPQL queries are usually more compact than plain SQL.
+    *
+    * For example joins and subqueries are often implicit.
+    *
+    * Here's the SQL code for this example:
     * SELECT u.id
     * FROM user u
     * JOIN department d
@@ -25,26 +30,32 @@ public class T1_BasicQueries extends AbstractTest {
      */
     @Test
     public void testFieldFiltering() {
-        TypedQuery<User> query = em.createQuery("from User u where u.department.name = :name", User.class);
+        TypedQuery<User> query = em.createQuery("FROM User u WHERE u.department.name = :name", User.class);
         query.setParameter("name", "department 1");
         List<User> result = query.getResultList();
         assertFalse(result.isEmpty());
     }
 
+    /*
+    * Queries can also return separate entity fields as object arrays.
+    * */
     @Test
     public void testProjectResults() {
-        Query query = em.createQuery("select u.name, u.lastLogin from User u where u.department.name = :name");
+        Query query = em.createQuery("SELECT u.name, u.lastLogin FROM User u WHERE u.department.name = :name");
         query.setParameter("name", "department 1");
         query.getResultList().forEach(user -> {
             System.out.println(((Object[]) user)[0] + ", last login: " + ((Object[]) user)[1]);
         });
     }
 
+    /*
+    * JPQL supports a big chunk of the SQL syntax, aggregate expressions are an example.
+    * */
     @Test
     public void testAggregateResults() {
-        Query query = em.createQuery("select count(u.id), max(u.lastLogin) from User u");
+        Query query = em.createQuery("SELECT COUNT(u.id), MAX(u.lastLogin) FROM User u");
         Object[] result = (Object[]) query.getSingleResult();
         System.out.println(result[0] + " different users, last activity: " + result[1]);
-        assertEquals(result[0], new Long(2));
+        assertEquals(result[0], new Long(3)); // TODO get rid of the magic number
     }
 }

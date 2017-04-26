@@ -4,6 +4,7 @@ import md.endava.domain.Department;
 import md.endava.persistence.EntityDao;
 import md.endava.persistence.PersistenceUtils;
 import md.endava.service.DepartmentService;
+import md.endava.service.ProjectService;
 import md.endava.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,6 +23,7 @@ public class AbstractTest {
     protected static EntityDao dao;
     protected static UserService userService = new UserService();
     protected static DepartmentService departmentService = new DepartmentService();
+    protected static ProjectService projectService = new ProjectService();
 
     private static Boolean isInitialized = false;
 
